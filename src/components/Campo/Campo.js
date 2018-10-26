@@ -16,9 +16,32 @@ class Campo extends React.Component {
                 erro:'Campo obrigatório'
             }
         
-        this.setState(state);
+            this.setState(state);
+        } else if(this.props.email && alvo.value.trim().length < 10){
+            const state = {
+                erro: 'Digite pelo menos 10 caracteres'
+            }
+            this.setState(state);
+
+        }else if(this.props.senha && alvo.value.trim().length < 6){
+            const state = {
+                erro: 'Digite pelo menos 6 caracteres'
+            }
+            this.setState(state);
+        }else if(isNaN(this.props.telefone && alvo.value.trim())){
+            const state = {
+                erro: 'Digite um número válido'
+            }
+            this.setState(state);
+        }
+        else if(alvo.value.trim()){
+            const state = {
+                erro:''
+            }
+            this.setState(state);
         }
     }
+
     render(){
         
         return (

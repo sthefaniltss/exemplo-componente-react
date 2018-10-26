@@ -16,13 +16,13 @@ import './Conta.css'
         <Campo id="nome" name="nome" type="text" placeholder="Nome" obrigatorio></Campo>
 
         <Legenda htmlFor="telefone">Telefone:</Legenda>
-        <Campo id="telefone" name="telefone" type="tel" placeholder="Telefone"></Campo>
+        <Campo id="telefone" name="telefone" type="tel" placeholder="Telefone" telefone></Campo>
 
         <Legenda htmlFor="email">Email:</Legenda>
-        <Campo id="email" name="email" type="email" placeholder="Email"></Campo>
+        <Campo id="email" name="email" type="email" placeholder="Email" email></Campo>
 
         <Legenda htmlFor="senha">Senha:</Legenda>
-        <Campo id="senha" name="senha" type="password" placeholder="Senha"></Campo>
+        <Campo id="senha" name="senha" type="password" placeholder="Senha" senha></Campo>
 
         <Botao desabilitado>Enviar</Botao>
         <Link url="/login">Fazer Login</Link>
