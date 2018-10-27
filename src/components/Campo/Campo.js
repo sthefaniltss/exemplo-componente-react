@@ -10,19 +10,22 @@ class Campo extends React.Component {
         }
     }
     validar = (event) => {
-        const alvo = event.target;
-        if(this.props.obrigatorio && alvo.value.trim() === ''){
+        const input = event.target;
+        if(this.props.obrigatorio && input.value.trim() === ''){
            
             this.setState({erro:'Campo obrigatório'});
-        } else if(this.props.minLength && alvo.value.trim().length < this.props.minLength){
+        } else if(this.props.minLength && input.value.trim().length < this.props.minLength){
 
             this.setState({erro: `Digite pelo menos ${this.props.minLength} caracteres`});
 
-        }else if(this.props.telefone && isNaN(alvo.value.trim())){
+        }else if(this.props.telefone && isNaN(input.value.trim())){
             this.setState({erro: 'Digite um número válido'});
 
+        }else if(this.props.pattern && !this.props.pattern.test(input.value)){
+            this.setState({erro: 'Digite um email válido'});
+
         }
-        else if(alvo.value.trim()){
+        else if(input.value.trim()){
             this.setState({erro: ''});
         }
     }
