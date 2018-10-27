@@ -12,33 +12,18 @@ class Campo extends React.Component {
     validar = (event) => {
         const alvo = event.target;
         if(this.props.obrigatorio && alvo.value.trim() === ''){
-            const state = {
-                erro:'Campo obrigatório'
-            }
-        
-            this.setState(state);
-        } else if(this.props.email && alvo.value.trim().length < 10){
-            const state = {
-                erro: 'Digite pelo menos 10 caracteres'
-            }
-            this.setState(state);
+           
+            this.setState({erro:'Campo obrigatório'});
+        } else if(this.props.minLength && alvo.value.trim().length < this.props.minLength){
 
-        }else if(this.props.senha && alvo.value.trim().length < 6){
-            const state = {
-                erro: 'Digite pelo menos 6 caracteres'
-            }
-            this.setState(state);
-        }else if(isNaN(this.props.telefone && alvo.value.trim())){
-            const state = {
-                erro: 'Digite um número válido'
-            }
-            this.setState(state);
+            this.setState({erro: `Digite pelo menos ${this.props.minLength} caracteres`});
+
+        }else if(this.props.telefone && isNaN(alvo.value.trim())){
+            this.setState({erro: 'Digite um número válido'});
+
         }
         else if(alvo.value.trim()){
-            const state = {
-                erro:''
-            }
-            this.setState(state);
+            this.setState({erro: ''});
         }
     }
 

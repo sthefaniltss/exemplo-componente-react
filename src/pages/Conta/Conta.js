@@ -19,10 +19,10 @@ import './Conta.css'
         <Campo id="telefone" name="telefone" type="tel" placeholder="Telefone" telefone></Campo>
 
         <Legenda htmlFor="email">Email:</Legenda>
-        <Campo id="email" name="email" type="email" placeholder="Email" email></Campo>
+        <Campo id="email" name="email" type="email" placeholder="Email" minLength={10}></Campo>
 
         <Legenda htmlFor="senha">Senha:</Legenda>
-        <Campo id="senha" name="senha" type="password" placeholder="Senha" senha></Campo>
+        <Campo id="senha" name="senha" type="password" placeholder="Senha" minLength={6}></Campo>
 
         <Botao desabilitado>Enviar</Botao>
         <Link url="/login">Fazer Login</Link>

@@ -13,9 +13,9 @@ import './Login.css'
         <h1>Login</h1>
         <p>Entre com seu e-mail e senha.</p>
         <Legenda htmlFor="email">Email:</Legenda>
-        <Campo id="email" name="email" type="email" placeholder="Email"></Campo>
+        <Campo id="email" name="email" type="email" placeholder="Email" minLength={10}></Campo>
         <Legenda htmlFor="senha">Senha:</Legenda>
-        <Campo id="senha" name="senha" type="password" placeholder="Senha"></Campo>
+        <Campo id="senha" name="senha" type="password" placeholder="Senha" minLength={6}></Campo>
         <Botao desabilitado>Enviar</Botao>
         <Link url="/conta">Criar uma conta</Link>
         </main>
