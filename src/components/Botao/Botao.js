@@ -6,7 +6,7 @@ function Botao(props) {
     if (props.desabilitado) {
         classes += " botao--desabilitado";
     }
-    return <input className={classes} type="submit" value={props.children} />;
+    return <input className={classes} type="submit" value={props.children} disabled={props.desabilitado} />;
 }
 
 export default Botao;

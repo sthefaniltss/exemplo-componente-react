@@ -24,7 +24,7 @@ import './Conta.css'
         <Legenda htmlFor="senha">Senha:</Legenda>
         <Campo id="senha" name="senha" type="password" placeholder="Senha" required minLength={6}></Campo>
 
-        <Botao desabilitado>Enviar</Botao>
+        <Botao disabled>Enviar</Botao>
         <Link url="/login">Fazer Login</Link>
         </main>
     );
