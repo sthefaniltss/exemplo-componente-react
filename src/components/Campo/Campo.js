@@ -5,10 +5,15 @@ class Campo extends Component {
     
     constructor (props){
         super(props);
+        this.valor = '';
         this.state ={
             modificado: false,
             erro: ''
         }
+    }
+
+    pegaValor() {
+        return this.valor;
     }
 
     temErro(){   
@@ -19,11 +24,12 @@ class Campo extends Component {
         }
        
     }
-
+    
     
     validar = (event) => {
         const input = event.target;
         const {value, type} = input;
+        this.valor = value;
         const {required, minLength, telefone} = this.props;
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         let mensagem = '';

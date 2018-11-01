@@ -26,10 +26,18 @@ class Login extends Component {
             
         }else{
             this.setState( {desabilitado: false});
-
         }
-
-
+    }
+    enviaDados = (event) => {
+        event.preventDefault();
+        const inputEmail = this.emailRef.current;
+        const inputSenha = this.senhaRef.current;
+        const dados = {
+            email: inputEmail.pegaValor(),
+            senha: inputSenha.pegaValor()
+        }
+        this.props.onEnviar(dados);
+        this.props.historico.push('/');
     }
 
     render (){
@@ -38,11 +46,13 @@ class Login extends Component {
             <main className="login">
                 <h1>Login</h1>
                 <p>Entre com seu e-mail e senha.</p>
-                <Legenda htmlFor="email">Email:</Legenda>
-                <Campo ref={this.emailRef} id="email" name="email" type="email" placeholder="Email" required onChange={this.handleChange} ></Campo>
-                <Legenda htmlFor="senha">Senha:</Legenda>
-                <Campo ref={this.senhaRef} id="senha" name="senha" type="password" placeholder="Senha" required minLength={6} onChange={this.handleChange} ></Campo>
-                <Botao desabilitado={this.state.desabilitado} >Enviar</Botao>
+                <form onSubmit={this.enviaDados}>
+                    <Legenda htmlFor="email">Email:</Legenda>
+                    <Campo ref={this.emailRef} id="email" name="email" type="email" placeholder="Email" required onChange={this.handleChange} ></Campo>
+                    <Legenda htmlFor="senha">Senha:</Legenda>
+                    <Campo ref={this.senhaRef} id="senha" name="senha" type="password" placeholder="Senha" required minLength={6} onChange={this.handleChange} ></Campo>
+                    <Botao desabilitado={this.state.desabilitado} >Enviar</Botao>
+                </form>
                 <Link url="/conta">Criar uma conta</Link>
             </main>
         );

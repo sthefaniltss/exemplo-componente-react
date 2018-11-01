@@ -1,22 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './index.css';
 import Login from './pages/Login/Login';
 import Conta from './pages/Conta/Conta';
 import Contato from './pages/Contato/Contato';
 import QuemSomos from './pages/QuemSomos/QuemSomos';
+import NaoEncontrada from './pages/NaoEncontrada/NaoEncontrada';
+import Home from './pages/Home/Home';
 
 
+let usuario = JSON.parse(localStorage.getItem('usuario'));
+
+function logaUsuario (dados) {
+    const json = JSON.stringify(dados);
+    localStorage.setItem('usuario', json )
+    usuario = dados;
+
+}
 function App (){
     return (
         <div className="app">
         <Switch>
-            <Route path="/" exact component={Login}/>
-            <Route path="/contato" exact component={Contato}/>
-            <Route path="/quemsomos" exact component={QuemSomos}/>
+            <Route path="/" exact render={() => {
+                return usuario ? <Home /> : <Redirect to="/login" />
+            }}/>
+            <Route path="/login" render={(props) => { 
+                return <Login historico={props.history} onEnviar={logaUsuario}/>
+            }}/>
             <Route path="/conta" component={Conta}/>
-            <Route path="/login" component={Login}/>
+            <Route path="/contato" component={Contato}/>
+            <Route path="/quemsomos" component={QuemSomos}/>
+            <Route component={NaoEncontrada}/>
         </Switch>
         </div>
 
