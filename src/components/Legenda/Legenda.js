@@ -1,7 +1,7 @@
-import React from 'react';
+import React,  { Component }  from 'react';
 import './Legenda.css';
 
-class Legenda extends React.Component{
+class Legenda extends Component{
     constructor (props) {
         super(props);
 

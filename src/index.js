@@ -8,6 +8,7 @@ import Contato from './pages/Contato/Contato';
 import QuemSomos from './pages/QuemSomos/QuemSomos';
 import NaoEncontrada from './pages/NaoEncontrada/NaoEncontrada';
 import Home from './pages/Home/Home';
+import Navbar from './components/Navbar/Navbar';
 
 
 let usuario = JSON.parse(localStorage.getItem('usuario'));
@@ -21,6 +22,7 @@ function logaUsuario (dados) {
 function App (){
     return (
         <div className="app">
+        <Navbar/>
         <Switch>
             <Route path="/" exact render={() => {
                 return usuario ? <Home /> : <Redirect to="/login" />
