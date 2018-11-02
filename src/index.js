@@ -15,14 +15,18 @@ let usuario = JSON.parse(localStorage.getItem('usuario'));
 
 function logaUsuario (dados) {
     const json = JSON.stringify(dados);
-    localStorage.setItem('usuario', json )
+    localStorage.setItem('usuario', json );
     usuario = dados;
 
+}
+function deslogaUsuario (){
+    localStorage.removeItem('usuario');
+    usuario = null;
 }
 function App (){
     return (
         <div className="app">
-        <Navbar/>
+        <Navbar logout={deslogaUsuario} usuario={usuario} />
         <Switch>
             <Route path="/" exact render={() => {
                 return usuario ? <Home /> : <Redirect to="/login" />

@@ -1,6 +1,7 @@
 import React,  { Component }  from 'react';
-import logo from './logo.png';
+import { Link } from 'react-router-dom';
 import Menu from '../Menu/Menu';
+import logo from './logo.png';
 import './Navbar.css';
 
 class Navbar extends Component{
@@ -10,11 +11,11 @@ class Navbar extends Component{
     render (){
         return (
             <header className="navbar">
-                <a href="/">
+                <Link to="/">
                     <img className="navbar__logo" src={logo} alt="Logo"/>
-                </a>
+                </Link>
 
-                <Menu/>
+                <Menu logout={this.props.logout} usuario={this.props.usuario}/>
 
             </header>
         )
