@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Provider, connect } from 'react-redux';
+import store from './redux/store';
 import './index.css';
 import Login from './pages/Login/Login';
 import Conta from './pages/Conta/Conta';
@@ -11,19 +13,11 @@ import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 
 
-let usuario = JSON.parse(localStorage.getItem('usuario'));
 
-function logaUsuario (dados) {
-    const json = JSON.stringify(dados);
-    localStorage.setItem('usuario', json );
-    usuario = dados;
-
-}
-function deslogaUsuario (){
-    localStorage.removeItem('usuario');
-    usuario = null;
-}
-function App (){
+function App (props){
+    const usuario = props.usuario;
+    const logaUsuario = props.logaUsuario;
+    const deslogaUsuario = props.deslogaUsuario;
     return (
         <div className="app">
         <Navbar logout={deslogaUsuario} usuario={usuario} />
@@ -44,7 +38,34 @@ function App (){
     )
 }
 
-ReactDOM.render(<BrowserRouter>
-        <App/>
-    </BrowserRouter>,
+function passaDadosDoEstadoParaMeuComponente(state){
+    const props = {
+        usuario: state.usuario
+    }
+    return props;
+}
+function passaFuncoesQueDisparamAcoesViaProps(dispatch){
+    const props = {
+        logaUsuario: (dados)=>{
+            dispatch({type: 'LOGA_USUARIO', dados: dados})
+        },
+        deslogaUsuario: ()=>{
+            dispatch({type: 'DESLOGA_USUARIO'})
+        }
+    }
+    return props;
+}
+const conectaNaStore = connect(
+    passaDadosDoEstadoParaMeuComponente,
+    passaFuncoesQueDisparamAcoesViaProps
+);
+
+const AppConectada = withRouter(conectaNaStore(App));
+
+ReactDOM.render(
+    <Provider store={store}>
+        <BrowserRouter>
+            <AppConectada/>
+        </BrowserRouter>
+    </Provider>,
     document.getElementById("projeto"))
