@@ -20,7 +20,7 @@ function App (props){
     const deslogaUsuario = props.deslogaUsuario;
     return (
         <div className="app">
-        <Navbar logout={deslogaUsuario} usuario={usuario} />
+        <Navbar/>
         <Switch>
             <Route path="/" exact render={() => {
                 return usuario ? <Home /> : <Redirect to="/login" />

@@ -24,7 +24,7 @@ class Menu extends Component{
     }
     sair = () => {
         this.abreOuFechaMenu();
-        this.props.logout();
+        this.props.deslogaUsuario();
     }
     render (){
 
