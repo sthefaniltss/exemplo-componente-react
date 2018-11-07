@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import { Provider, connect } from 'react-redux';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import store from './redux/store';
 import './index.css';
 import Login from './pages/Login/Login';
@@ -14,16 +14,12 @@ import Navbar from './components/Navbar/Navbar';
 
 
 
-function App (props){
-    const usuario = props.usuario;
-    const logaUsuario = props.logaUsuario;
-    const deslogaUsuario = props.deslogaUsuario;
+function App (){
     return (
         <div className="app">
         <Navbar/>
         <Switch>
-            <Route path="/" exact render={() => {
-                return usuario ? <Home /> : <Redirect to="/login" />
+            <Route path="/" exact component={Home} />
             }}/>
             <Route path="/login" component={Login}/>
             <Route path="/conta" component={Conta}/>
@@ -36,34 +32,11 @@ function App (props){
     )
 }
 
-function passaDadosDoEstadoParaMeuComponente(state){
-    const props = {
-        usuario: state.usuario
-    }
-    return props;
-}
-function passaFuncoesQueDisparamAcoesViaProps(dispatch){
-    const props = {
-        logaUsuario: (dados)=>{
-            dispatch({type: 'LOGA_USUARIO', dados: dados})
-        },
-        deslogaUsuario: ()=>{
-            dispatch({type: 'DESLOGA_USUARIO'})
-        }
-    }
-    return props;
-}
-const conectaNaStore = connect(
-    passaDadosDoEstadoParaMeuComponente,
-    passaFuncoesQueDisparamAcoesViaProps
-);
-
-const AppConectada = withRouter(conectaNaStore(App));
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <AppConectada/>
+            <App/>
         </BrowserRouter>
     </Provider>,
     document.getElementById("projeto"))

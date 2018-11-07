@@ -1,5 +1,5 @@
 import React,  { Component }  from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Menu from '../Menu/Menu';
 import logo from './logo.png';
@@ -40,4 +40,4 @@ function passaNoPropsDisparadoresDeAcao(dispatch){
 const conectaNaStore = connect(passaNoPropsDadosDoEstado, passaNoPropsDisparadoresDeAcao);
 const NavbarConectada = conectaNaStore(Navbar);
 
-export default NavbarConectada;
+export default withRouter(NavbarConectada);

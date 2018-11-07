@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './Home.css';
 
 
@@ -10,8 +12,12 @@ class Home extends Component {
         this.state ={}
 
     }
+    
 
     render (){
+        if(!this.props.usuario){
+            return <Redirect to="/login"/>
+        }
 
         return (
             <main className="home">
@@ -20,5 +26,14 @@ class Home extends Component {
         );
     }
 }
+function passaDadosDoEstadoParaMeuComponente(state){
+    return {
+        usuario: state.usuario
+    }
+}
 
-export default Home;
+const conectaNaStore = connect(passaDadosDoEstadoParaMeuComponente);
+
+const HomeConectada = conectaNaStore(Home);
+
+export default HomeConectada;
