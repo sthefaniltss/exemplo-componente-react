@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Link from '../../components/Links/Link';
 import Botao from '../../components/Botao/Botao';
 import Legenda from '../../components/Legenda/Legenda';
@@ -36,8 +37,8 @@ class Login extends Component {
             email: inputEmail.pegaValor(),
             senha: inputSenha.pegaValor()
         }
-        this.props.onEnviar(dados);
-        this.props.historico.push('/');
+        this.props.logaUsuario(dados);
+        this.props.history.push('/');
     }
 
     render (){
@@ -59,4 +60,15 @@ class Login extends Component {
     }
 }
 
-export default Login;
+function passaNoPropsDisparadoresDeAcao(dispatch){
+    return {
+        logaUsuario: (dados) =>{
+            dispatch({type: 'LOGA_USUARIO', dados: dados})
+        }
+    }
+}
+const conectaNaStore = connect(null, passaNoPropsDisparadoresDeAcao);
+const LoginConectado = conectaNaStore(Login);
+
+
+export default LoginConectado;
