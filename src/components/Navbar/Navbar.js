@@ -1,6 +1,7 @@
 import React,  { Component }  from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { deslogaUsuario } from '../../redux/actions';
 import Menu from '../Menu/Menu';
 import logo from './logo.png';
 import './Navbar.css';
@@ -24,20 +25,7 @@ class Navbar extends Component{
     }
 }
 
-function passaNoPropsDadosDoEstado(state){
-    return {
-        usuario: state.usuario
-    }
 
-}
-function passaNoPropsDisparadoresDeAcao(dispatch){
-    return {
-        deslogaUsuario: () =>{
-            dispatch({type: 'DESLOGA_USUARIO'})
-        }
-    }
-}
-const conectaNaStore = connect(passaNoPropsDadosDoEstado, passaNoPropsDisparadoresDeAcao);
-const NavbarConectada = conectaNaStore(Navbar);
 
-export default withRouter(NavbarConectada);
+
+export default withRouter(connect((state) =>({usuario: state.usuario}), {deslogaUsuario})(Navbar));

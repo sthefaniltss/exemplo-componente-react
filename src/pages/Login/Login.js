@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { logaUsuario } from '../../redux/actions';
 import Link from '../../components/Links/Link';
 import Botao from '../../components/Botao/Botao';
 import Legenda from '../../components/Legenda/Legenda';
 import Campo from '../../components/Campo/Campo';
-import './Login.css'
+import './Login.css';
 
 
 class Login extends Component {
@@ -60,15 +61,7 @@ class Login extends Component {
     }
 }
 
-function passaNoPropsDisparadoresDeAcao(dispatch){
-    return {
-        logaUsuario: (dados) =>{
-            dispatch({type: 'LOGA_USUARIO', dados: dados})
-        }
-    }
-}
-const conectaNaStore = connect(null, passaNoPropsDisparadoresDeAcao);
-const LoginConectado = conectaNaStore(Login);
 
 
-export default LoginConectado;
+
+export default connect(null, {logaUsuario})(Login);

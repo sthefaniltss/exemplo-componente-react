@@ -26,14 +26,6 @@ class Home extends Component {
         );
     }
 }
-function passaDadosDoEstadoParaMeuComponente(state){
-    return {
-        usuario: state.usuario
-    }
-}
 
-const conectaNaStore = connect(passaDadosDoEstadoParaMeuComponente);
 
-const HomeConectada = conectaNaStore(Home);
-
-export default HomeConectada;
+export default connect((state) => ({ usuario: state.usuario }))(Home);
