@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Home.css';
+import loading from './loading.svg'
 
 
 
@@ -9,7 +10,7 @@ class Home extends Component {
     
     constructor (props){
         super(props);
-        this.state ={}
+        this.state = {carregando: true}
 
     }
     
@@ -21,7 +22,13 @@ class Home extends Component {
 
         return (
             <main className="home">
-               
+               {this.state.carregando ? (
+                   <img className="home__loading" src={loading} alt="Carregando" />
+               ) : (
+                   <div>
+                       Aqui listarei os postits
+                   </div>
+               ) }
             </main>
         );
     }
