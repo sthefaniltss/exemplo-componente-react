@@ -18,10 +18,12 @@ class Postit extends Component{
             titulo: form.titulo.value, 
             texto: form.texto.value
         };
-        this.props.cadastraPostit(dados)
+        this.props.cadastraPostit(dados);
+        form.reset();
     }
     
     render (){
+        const cadastrando = !this.props.id;
 
         return (
             <form className="postit" onSubmit={this.cadastraOuAltera}>  

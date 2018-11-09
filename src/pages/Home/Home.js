@@ -30,7 +30,7 @@ class Home extends Component {
                        <Postit />
                         <div>
                             {this.props.postits.map(postit => (
-                                <Postit key={} titulo={postit.titulo} texto={postit.texto} />
+                                <Postit id={postit.id} key={postit.id} titulo={postit.titulo} texto={postit.texto} />
                             ))}
                         </div>
                    </div>
