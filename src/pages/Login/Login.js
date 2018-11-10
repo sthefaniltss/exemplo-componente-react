@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { logaUsuario } from '../../redux/actions';
 import Link from '../../components/Links/Link';
 import Botao from '../../components/Botao/Botao';
@@ -43,7 +44,9 @@ class Login extends Component {
     }
 
     render (){
-
+        if (this.props.usuario) {
+            return <Redirect to="/"/>
+        }
         return (
             <main className="login">
                 <h1>Login</h1>
@@ -64,4 +67,4 @@ class Login extends Component {
 
 
 
-export default connect(null, {logaUsuario})(Login);
+export default connect((state) => ({ usuario: state.usuario}), {logaUsuario})(Login);

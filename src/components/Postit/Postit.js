@@ -1,5 +1,6 @@
 import React,  { Component }  from 'react';
 import { connect } from 'react-redux';
+import { MdDelete } from 'react-icons/md';
 import { cadastraPostit, alteraPostit, removePostit } from '../../redux/actions';
 import './Postit.css';
 
@@ -14,7 +15,6 @@ class Postit extends Component{
         const form = event.target;
         if(cadastrando){
             const dados = {
-                id: `22021710-8a39-4135-9e41-16512d9a16d${Math.random(100)}`,
                 titulo: form.titulo.value, 
                 texto: form.texto.value
             };
@@ -49,7 +49,7 @@ class Postit extends Component{
             <form className="postit" onSubmit={this.cadastraOuAltera} onClick={this.editaPostit}>
                 
                 {(!cadastrando && this.state.editando) && (
-                    <button type="button" className="postit__botao-remover" onClick={this.removePostit}>x</button>
+                    <button type="button" className="postit__botao-remover" onClick={this.removePostit}><MdDelete/></button>
                 )}
                 <input className="postit__titulo" type="text" name="titulo" placeholder="Título" autoComplete="off" defaultValue={this.props.titulo}/>
                 <textarea className="postit__texto" name="texto" placeholder="Digite o texto..." rows={5} autoComplete="off" defaultValue={this.props.texto} />
